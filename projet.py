@@ -1,6 +1,5 @@
 from PIL import Image
-import numpy as np
-import glob, os, shutil, errno, math
+import os, math
 
 infile = "C:\\Users\\myuser\\Desktop\\" #Input folder
 outfile = "C:\\Users\\myuser\\Desktop\\output\\" #Output folder
