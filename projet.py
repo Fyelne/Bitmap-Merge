@@ -1,8 +1,8 @@
 from PIL import Image
 import os, math
 
-infile = "C:\\Users\\myuser\\Desktop\\" #Input folder
-outfile = "C:\\Users\\myuser\\Desktop\\output\\" #Output folder
+infile = input("Insert input file (ex : C:/Users/myuser/Desktop/) oublie pas le / à la fin ! ") #Input folder
+outfile = input("Insert input file (ex : C:/Users/myuser/Desktop/output/) oublie pas le / à la fin !") #Output folder
 
 
 if(not os.path.isdir(outfile)): #Making output folder if he doesn't exist
@@ -33,10 +33,9 @@ def combineimg(image1,image2):
 
 
     new_img = Image.merge('RGBA', (rgb2[r],rgb1[0],rgb2[b],rgb1[1])) #Merge RGBA into 1 image
-    output_name, ext = os.path.splitext(image1)
-    output_name = output_name[:-2]
-    print(output_name)
-    new_img.save(outfile+output_name+'.png') #Export into png
+    output_name = os.path.basename(image1)[:-6]
+    print(os.path.join(outfile,output_name)+'.png')
+    new_img.save(os.path.join(outfile,output_name)+'.png') #Export into png
 
 
 print("Loading ... ")
@@ -45,7 +44,8 @@ for root, dirs, files in os.walk(infile, topdown=False): #Check all the input fo
         file, ext = os.path.splitext(name)
         if(ext.lower()+"" == ".tga" and file[len(file)-1].lower()+"" == "s"): #Check for tga file
             if(os.path.isfile(infile+file[:-1]+"n"+ext)):
-                combineimg(infile+file[:-1]+"n"+ext, name)
+                print("Image en cours de traitement : "+name)
+                combineimg(infile+file[:-1]+"n"+ext,name)
                 print("+1 Image")
 
         
