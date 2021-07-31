@@ -45,7 +45,7 @@ for root, dirs, files in os.walk(infile, topdown=False): #Check all the input fo
         file, ext = os.path.splitext(name)
         if(ext.lower()+"" == ".tga" and file[len(file)-1].lower()+"" == "s"): #Check for tga file
             if(os.path.isfile(infile+file[:-1]+"n"+ext)):
-                combineimg(name,infile+file[:-1]+"n"+ext)
+                combineimg(infile+file[:-1]+"n"+ext, name)
                 print("+1 Image")
 
         
